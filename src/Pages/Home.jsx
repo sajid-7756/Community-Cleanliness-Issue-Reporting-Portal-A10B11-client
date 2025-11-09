@@ -1,10 +1,12 @@
 import React from "react";
-import Navbar from "../Components/Navbar";
+import BannerSlider from "../Components/BannerSlider";
+import IssueCategories from "../Components/IssueCategories";
 
 const Home = () => {
   return (
     <div>
-      home
+      <BannerSlider></BannerSlider>
+      <IssueCategories></IssueCategories>
     </div>
   );
 };

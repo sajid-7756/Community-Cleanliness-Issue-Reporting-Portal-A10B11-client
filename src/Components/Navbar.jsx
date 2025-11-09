@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import Container from "./Container";
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthContext";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, setUser, signOutFunc } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const handleSignOut = () => {
     signOutFunc()
@@ -70,7 +69,9 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">
+            Clean <span className="text-accent">Hub</span>
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -88,10 +89,10 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-30 "
               >
                 <li>
-                  <a onClick={handleSignOut}>Logout</a>
+                  <button className="btn btn-outline" onClick={handleSignOut}>Logout</button>
                 </li>
               </ul>
             </div>
