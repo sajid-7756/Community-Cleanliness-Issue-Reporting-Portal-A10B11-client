@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { FaTrash, FaHardHat, FaTools, FaRoad } from "react-icons/fa";
+import useAxios from "../Hooks/useAxios";
+import { Link } from "react-router";
 
 const LatestIssues = () => {
-  const [issues, setIssues] = useState([]);
+  const [latestIssues, setlatestIssues] = useState([]);
+  const axiosInstance = useAxios();
 
   useEffect(() => {
-    fetch("http://localhost:3000/latest-issues")
-      .then((res) => res.json())
-      .then((data) => setIssues(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+    axiosInstance
+      .get("/latest-issues")
+      .then((res) => {
+        console.log(res.data);
+        setlatestIssues(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, [axiosInstance]);
 
   return (
     <div className="p-4 md:p-8 min-h-screen">
@@ -18,7 +24,7 @@ const LatestIssues = () => {
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {issues.map((issue, index) => {
+        {latestIssues.map((issue, index) => {
           const Icon =
             issue.category === "Garbage"
               ? FaTrash
@@ -67,8 +73,10 @@ const LatestIssues = () => {
                   </div>
                 </div>
 
-                <p className="text-sm text-neutral-content italic mb-2">
-                  <span className="font-bold">Location:</span> {issue.location}
+                {/* Location */}
+                <p className="text-sm text-primary italic mb-2">
+                  <span className="font-bold text-black">Location:</span>{" "}
+                  {issue.location}
                 </p>
 
                 <p className="text-base-content text-opacity-80 line-clamp-2 text-sm mb-4">
@@ -76,9 +84,12 @@ const LatestIssues = () => {
                 </p>
 
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary btn-sm text-primary-content hover:bg-primary-focus">
+                  <Link
+                    to={`/issue-details/${issue._id}`}
+                    className="btn btn-primary btn-sm text-primary-content hover:bg-primary-focus"
+                  >
                     See Details
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
