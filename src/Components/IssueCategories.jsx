@@ -5,7 +5,7 @@ import Container from "./Container";
 const categories = [
   {
     id: 1,
-    title: "Illegal Dumping & Waste",
+    title: "Garbage",
     description: "Unauthorized disposal of garbage, bulk trash, and debris.",
     icon: <FaTrash size={32} />,
     gradient: "from-red-500 to-orange-500",
@@ -13,7 +13,7 @@ const categories = [
   },
   {
     id: 2,
-    title: "Construction Violations",
+    title: "Illegal Construction ",
     description: "Unpermitted work, noise complaints, or safety hazards.",
     icon: <FaHammer size={32} />,
     gradient: "from-yellow-500 to-amber-600",
@@ -21,7 +21,7 @@ const categories = [
   },
   {
     id: 3,
-    title: "Property & Zoning",
+    title: "Broken Public Property",
     description: "Dilapidated buildings, overgrown yards, zoning issues.",
     icon: <FaTools size={32} />,
     gradient: "from-blue-500 to-cyan-500",
@@ -29,7 +29,7 @@ const categories = [
   },
   {
     id: 4,
-    title: "Road & Infrastructure",
+    title: "Road Damage",
     description: "Potholes, broken streetlights, damaged signs.",
     icon: <FaRoad size={32} />,
     gradient: "from-purple-500 to-pink-500",
@@ -39,7 +39,7 @@ const categories = [
 
 const App = () => {
   return (
-    <Container className="min-h-screen p-8 font-sans">
+    <Container className="p-8 font-sans">
       <h1 className="text-3xl font-bold text-gray-900 mb-6">
         Issue <span className="text-accent">Categories</span>
       </h1>
