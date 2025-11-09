@@ -3,8 +3,10 @@ import { AuthContext } from "../Provider/AuthContext";
 import toast from "react-hot-toast";
 import { Navigate, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAxios from "../Hooks/useAxios";
 
 const Register = () => {
+  const axiosInstance = useAxios();
   const {
     user,
     setUser,
@@ -90,18 +92,28 @@ const Register = () => {
 
     form.reset();
   };
-  const handleGoogleSignup = () => {
-    setLoading(true);
+
+  const handleGoogleSignIn = () => {
     signInGoogleFunc()
-      .then((res) => {
-        setUser(res.user);
-        setLoading(false);
-        toast.success('Google Sign In Success')
-        console.log(res.user);
+      .then((result) => {
+        console.log(result.user);
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        };
+
+        axiosInstance
+          .post("/users", newUser)
+          .then((data) => {
+            console.log(data.data);
+            toast.success("Google Sign In Success");
+          })
+          .catch((err) => console.log(err));
       })
-      .catch((err) => {
-        setLoading(false);
-        toast.error(err.message);
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
       });
   };
 
@@ -191,7 +203,7 @@ const Register = () => {
 
             {/* Google */}
             <button
-              onClick={handleGoogleSignup}
+              onClick={handleGoogleSignIn}
               className="btn bg-white text-black border-[#e5e5e5] w-full"
             >
               <svg

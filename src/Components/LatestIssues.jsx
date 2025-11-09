@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaTrash, FaHardHat, FaTools, FaRoad } from "react-icons/fa";
 import useAxios from "../Hooks/useAxios";
 import { Link } from "react-router";
+import Container from "./Container";
 
 const LatestIssues = () => {
   const [latestIssues, setlatestIssues] = useState([]);
@@ -18,7 +19,7 @@ const LatestIssues = () => {
   }, [axiosInstance]);
 
   return (
-    <div className="p-4 md:p-8 min-h-screen">
+    <Container className="p-4 md:p-8 min-h-screen">
       <h2 className="text-3xl font-bold mb-8">
         Latest Local <span className="text-primary">Issues</span>
       </h2>
@@ -96,7 +97,7 @@ const LatestIssues = () => {
           );
         })}
       </div>
-    </div>
+    </Container>
   );
 };
 
