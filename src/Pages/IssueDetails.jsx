@@ -1,15 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
-import { FaTrash, FaHardHat, FaTools, FaRoad } from "react-icons/fa";
+import {
+  FaTrash,
+  FaHardHat,
+  FaTools,
+  FaRoad,
+  FaArrowLeft,
+} from "react-icons/fa";
 import Container from "../Components/Container";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "../Provider/AuthContext";
+import Loading from "../Components/Loading";
 
 const IssueDetails = () => {
   const { user, loading } = useContext(AuthContext);
   const data = useLoaderData();
   const [showModal, setShowModal] = useState(false);
   const axiosInstance = useAxios();
+  const [contricbutions, setContricbutions] = useState([]);
+  const [refetch, setRefetch] = useState(false);
 
   console.log(user);
 
@@ -32,16 +41,27 @@ const IssueDetails = () => {
       additionalInfo: additionalInfo,
       name: user?.displayName,
       email: user?.email,
+      image: user?.photoURL,
     };
     console.log(newContribution);
 
     axiosInstance.post("/contributions", newContribution).then((data) => {
       if (data.data.insertedId) {
         alert("contribution success");
+        setShowModal(false);
         console.log("data after post", data.data);
+        setRefetch((prev) => !prev);
       }
     });
   };
+
+  useEffect(() => {
+    axiosInstance.get(`/contributions/${data.issueId}`).then((data) => {
+      setContricbutions(data.data);
+    });
+  }, [axiosInstance, data?.issueId, refetch]);
+
+  console.log(contricbutions);
 
   const { Icon, badgeClass } =
     data.category === "Garbage"
@@ -55,13 +75,16 @@ const IssueDetails = () => {
       : { Icon: FaTools, badgeClass: "badge-neutral" };
 
   if (loading) {
-    return <p>loading</p>;
+    return <Loading></Loading>;
   }
 
   return (
-    <Container className="p-6 md:p-10 min-h-screen">
+    <Container className="p-6 md:p-10 min-h-screen space-y-10">
       <h2 className="text-3xl font-bold mb-8">
-        Latest Local <span className="text-primary">Issues</span>
+        <span>
+          <FaArrowLeft />
+        </span>
+        Issue <span className="text-primary">Details</span>
       </h2>
       <div className="card bg-base-100 shadow-xl max-w-3xl mx-auto">
         {/* Image */}
@@ -114,7 +137,6 @@ const IssueDetails = () => {
         </div>
       </div>
 
-      {/* DaisyUI Modal */}
       {showModal && (
         <div className="modal modal-open">
           <div className="modal-box w-full max-w-lg">
@@ -126,7 +148,7 @@ const IssueDetails = () => {
                 <label className="label">Issue Title</label>
                 <input
                   type="text"
-                  value={data.title}
+                  defaultValue={data?.title}
                   readOnly
                   className="input input-bordered w-full"
                 />
@@ -138,7 +160,7 @@ const IssueDetails = () => {
                 <input
                   type="number"
                   name="amount"
-                  defaultValue={data.amount}
+                  defaultValue={data?.amount}
                   className="input input-bordered w-full"
                 />
               </div>
@@ -148,7 +170,7 @@ const IssueDetails = () => {
                 <label className="label">Contributor Name</label>
                 <input
                   type="text"
-                  value={user?.displayName}
+                  defaultValue={user?.displayName}
                   placeholder="Your name"
                   className="input input-bordered w-full"
                 />
@@ -194,7 +216,7 @@ const IssueDetails = () => {
                 <input
                   type="text"
                   name="date"
-                  value={new Date().toLocaleDateString()}
+                  defaultValue={new Date().toLocaleDateString()}
                   readOnly
                   className="input input-bordered w-full"
                 />
@@ -227,6 +249,61 @@ const IssueDetails = () => {
           </div>
         </div>
       )}
+      <div className="overflow-x-auto">
+        <h2 className="text-3xl font-bold mb-8">
+          Contributors of this <span className="text-primary">Issue</span>
+        </h2>
+        {contricbutions.length === 0 ? (
+          <h3 className="text-primary text-xl font-semibold">
+            No one Contributed for this Issue
+          </h3>
+        ) : (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>SL NO</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contricbutions.map((contricbution, index) => (
+                <tr key={contricbution._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img
+                            src={
+                              contricbution.image ||
+                              "https://img.daisyui.com/images/profile/demo/5@94.webp"
+                            }
+                            alt={contricbution.title}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-bold">{contricbution.title}</div>
+                        <div className="text-sm opacity-50">
+                          {contricbution.location}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <span className="text-accent">{contricbution.name}</span>
+                  </td>
+
+                  <td>${contricbution.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </Container>
   );
 };

@@ -87,7 +87,7 @@ const LatestIssues = () => {
                 <div className="card-actions justify-end">
                   <Link
                     to={`/issue-details/${issue._id}`}
-                    className="btn btn-primary btn-sm text-primary-content hover:bg-primary-focus"
+                    className="btn btn-primary text-primary-content hover:bg-primary-focus"
                   >
                     See Details
                   </Link>

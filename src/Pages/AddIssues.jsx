@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthContext";
 import useAxios from "../Hooks/useAxios";
+import toast from "react-hot-toast";
 
 const AddIssue = () => {
   const { user } = useContext(AuthContext);
@@ -40,6 +41,7 @@ const AddIssue = () => {
     };
 
     axiosInstance.post("/issues", newIssue).then((data) => {
+      toast.success("Successfully added");
       console.log("issue after post", data.data);
     });
   };
