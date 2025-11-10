@@ -3,7 +3,7 @@ import { FaLeaf, FaHandsHelping } from "react-icons/fa";
 
 const VolunteerCTA = () => {
   return (
-    <section className="bg-base-200 py-12 px-6 md:px-12 rounded-xl shadow-lg text-center">
+    <section className="bg-base-300 py-12 px-6 md:px-12 rounded-xl shadow-md text-center my-20">
       <div className="max-w-2xl mx-auto">
         {/* Icon + Heading */}
         <div className="flex justify-center mb-4">
@@ -22,7 +22,7 @@ const VolunteerCTA = () => {
 
         {/* CTA Button */}
         <Link
-          to="/volunteer-signup"
+          to="/register"
           className="btn btn-primary btn-lg text-primary-content hover:bg-primary-focus"
         >
           <FaLeaf className="mr-2" />

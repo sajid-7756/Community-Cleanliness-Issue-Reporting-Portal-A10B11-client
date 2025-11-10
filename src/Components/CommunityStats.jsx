@@ -4,6 +4,7 @@ import { FaUsers, FaCheckCircle, FaHourglassHalf } from "react-icons/fa";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthContext";
+import Container from "./Container";
 
 const CommunityStats = () => {
   const { user } = useContext(AuthContext);
@@ -38,8 +39,8 @@ const CommunityStats = () => {
 
   console.log({ pendingIssue, resolvedIssue });
   return (
-    <section className="p-6 md:p-10 bg-base-100 rounded-xl shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-base-content">
+    <Container className="p-6 md:p-10 bg-base-100 rounded-xl shadow-lg">
+      <h2 className="text-3xl font-bold mb-9 text-base-content">
         Community <span className="text-primary">Stats</span>
       </h2>
 
@@ -71,7 +72,7 @@ const CommunityStats = () => {
           <div className="text-sm text-base-content/70">Issues Pending</div>
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 
