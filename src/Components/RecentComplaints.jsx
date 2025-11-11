@@ -33,7 +33,7 @@ const RecentComplaints = () => {
   }
 
   return (
-    <Container className="min-h-screen bg-linear-to-br p-4 md:p-8">
+    <Container className="min-h-screen bg-linear-to-br md:p-8 p-8">
       <div className="mb-10">
         <h1 className="text-4xl font-bold mb-6">
           Recent <span className="text-primary">Complaints</span>
@@ -43,7 +43,7 @@ const RecentComplaints = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
         {latestIssues.map((issue, index) => {
           const Icon =
             issue.category === "Garbage"

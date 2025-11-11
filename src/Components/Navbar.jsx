@@ -76,7 +76,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content dark:bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow bg-white"
             >
               {links}
             </ul>
@@ -129,7 +129,7 @@ const Navbar = () => {
           </label>
           {user ? (
             <div className="dropdown dropdown-end avatar indicator relative">
-              <span className="indicator-item badge badge-primary absolute top-1 -right-0 animate-pulse hidden sm:block">
+              <span className="indicator-item badge badge-primary absolute top-1 right-0 animate-pulse hidden sm:block">
                 {user?.displayName}
               </span>
               <label tabIndex={0} className="cursor-pointer">

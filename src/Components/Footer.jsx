@@ -1,9 +1,18 @@
 import { Link } from "react-router";
 import { RiTwitterXLine } from "react-icons/ri";
+import { FaArrowAltCircleUp } from "react-icons/fa";
 const Footer = () => {
+  const handleUpBtn = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <>
-      <footer className="footer sm:footer-horizontal bg-base-100 text-base-content p-10">
+    <div className="relative">
+      <hr className="h-1 bg-linear-to-r from-primary via-secondary to-accent animate-pulse rounded-full border-0" />
+      <footer className="footer sm:footer-horizontal bg-base-100 text-base-content p-10 sm:flex sm:justify-around">
         <nav>
           <Link to={"/"} className="text-xl font-bold">
             Clean <span className="text-accent">Hub</span>
@@ -67,7 +76,13 @@ const Footer = () => {
           </p>
         </nav>
       </footer>
-    </>
+      <div
+        onClick={handleUpBtn}
+        className="absolute right-5 bottom-30 cursor-pointer"
+      >
+        <FaArrowAltCircleUp size={50} color="green" />
+      </div>
+    </div>
   );
 };
 

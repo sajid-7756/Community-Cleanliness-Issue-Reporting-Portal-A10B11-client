@@ -301,12 +301,11 @@ const IssueDetails = () => {
             No one Contributed for this Issue
           </h3>
         ) : (
-          <table className="table bg-primary-content">
+          <table className="table bg-base-100">
             <thead>
               <tr>
                 <th>SL NO</th>
-                <th>Image</th>
-                <th>Name</th>
+                <th>User Info</th>
                 <th>Amount</th>
               </tr>
             </thead>
@@ -315,7 +314,7 @@ const IssueDetails = () => {
                 <tr key={contricbution._id}>
                   <td>{index + 1}</td>
                   <td>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center">
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
@@ -328,16 +327,16 @@ const IssueDetails = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">{contricbution.title}</div>
                         <div className="text-sm opacity-50">
                           {contricbution.location}
                         </div>
                       </div>
+                      <td>
+                        <span className="text-accent font-semibold">
+                          {contricbution.name}
+                        </span>
+                      </td>
                     </div>
-                  </td>
-
-                  <td>
-                    <span className="text-accent">{contricbution.name}</span>
                   </td>
 
                   <td>${contricbution.amount}</td>
