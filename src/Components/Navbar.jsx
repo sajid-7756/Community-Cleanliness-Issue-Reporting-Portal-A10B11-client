@@ -185,8 +185,11 @@ const Navbar = () => {
                 <img
                   title={user.displayName}
                   className="w-10 h-10 rounded-full ring-3 ring-primary"
-                  src={user?.photoURL}
-                  alt={user?.displayName}
+                  src={
+                    user?.photoURL.startsWith("http")
+                      ? user?.photoURL
+                      : "https://i.ibb.co.com/CpHdF8h2/icons8-user.gif"
+                  }
                 />
               </label>
               <ul
