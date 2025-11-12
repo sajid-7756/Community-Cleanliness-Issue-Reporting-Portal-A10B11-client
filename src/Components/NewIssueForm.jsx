@@ -71,7 +71,7 @@ const NewIssueForm = ({ handleSubmit, user }) => {
             />
           </div>
 
-          {/* Status (default ongoing) */}
+          {/* Status */}
           <div>
             <label className="label">Status</label>
             <input
@@ -83,7 +83,7 @@ const NewIssueForm = ({ handleSubmit, user }) => {
             />
           </div>
 
-          {/* Date (auto-set, read-only) */}
+          {/* Date */}
           <div>
             <label className="label">Date</label>
             <input
@@ -95,7 +95,7 @@ const NewIssueForm = ({ handleSubmit, user }) => {
             />
           </div>
 
-          {/* Email (current user, read-only) */}
+          {/* Email */}
           <div>
             <label className="label">Email</label>
             <input

@@ -33,13 +33,12 @@ const VolunteerCTA = () => {
 
             {/* CTA Button */}
             <div className="pt-4">
-              <Link
-                to="/register"
-                className="btn btn-primary btn-lg text-primary-content hover:bg-primary-focus hover:scale-105 transition-transform duration-300 shadow-lg"
-              >
-                <FaLeaf className="mr-2" />
-                Become a Volunteer
-              </Link>
+              <button className="btn btn-primary btn-lg text-primary-content hover:bg-primary-focus hover:scale-105 transition-transform duration-300 shadow-lg">
+                <Link to="/register" className="flex items-center">
+                  <FaLeaf className="mr-2" />
+                  Become a Volunteer
+                </Link>
+              </button>
             </div>
           </div>
 

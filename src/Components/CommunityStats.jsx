@@ -45,12 +45,18 @@ const CommunityStats = () => {
   return (
     <div className="p-6 md:p-10 bg-secondary/50">
       <Container className="p-4 space-y-10">
-        <h2 className="text-3xl font-bold text-base-content">
-          Community{" "}
-          <span className="text-primary">
-            <Typewriter words={["Stats"]} loop={true}></Typewriter>
-          </span>
-        </h2>
+        <div className="mb-10">
+          <h1 className="text-4xl font-bold mb-6">
+            Community
+            <span className="text-primary">
+              <Typewriter words={["States"]} loop={true}></Typewriter>
+            </span>
+          </h1>
+          <p className="mt-6 text-lg">
+            Real-time insights into reported issues across the community
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Users */}
           <div className="group bg-white dark:bg-base-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">

@@ -58,7 +58,7 @@ const MyIssues = () => {
               issue._id === issueId ? { ...issue, ...updatedIssue } : issue
             )
           );
-          toast.success("Updated Sucess");
+          toast.success("Issue Update Sucess");
           issueModalRef.current.close();
         }
       })

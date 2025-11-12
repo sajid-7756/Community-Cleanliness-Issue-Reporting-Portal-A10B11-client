@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: myTheme --default, dark --prefersdark;
@@ -107,9 +108,13 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+#root {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 a {
   text-decoration: none;
-  padding: 0.5rem 1rem;
   transition: color 0.2s ease;
 }
 
@@ -138,12 +143,7 @@ a.active {
   color: hsl(var(--pc));
   background: hsl(var(--p));
 }
-.rdg {
-  --rdg-color: #000;
-  --rdg-background-color: #fff;
-  --rdg-header-background-color: #f1f1f1;
-  --rdg-border-color: #ccc;
-}
+
 .rdg {
   --rdg-color: #000;
   --rdg-background-color: #fff;
@@ -151,9 +151,11 @@ a.active {
   --rdg-border-color: #ccc;
   --rdg-row-hover-background-color: #e8f5e9;
 }
+
 .rdg .rdg-row:hover {
   transition: background-color 0.2s ease-in-out;
 }
+
 @keyframes gradient {
   0%,
   100% {
@@ -167,21 +169,6 @@ a.active {
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient 5s ease infinite;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out;
 }
 
 @keyframes gradient {

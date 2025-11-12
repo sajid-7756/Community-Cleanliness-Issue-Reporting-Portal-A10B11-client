@@ -169,7 +169,7 @@ const IssueDetails = () => {
           {/* Pay Contribution Button */}
           <div className="card-actions justify-end mt-2 pt-4 border-t border-base-300/30">
             <button
-              className="btn btn-primary px-8 rounded-full font-semibold text-primary-content hover:scale-105 transform transition-all duration-300 hover:shadow-lg active:scale-95"
+              className="btn btn-primary px-8 font-semibold text-primary-content hover:scale-105 transform transition-all duration-300 hover:shadow-lg active:scale-95"
               onClick={() => setShowModal(true)}
             >
               Pay Clean-Up Contribution

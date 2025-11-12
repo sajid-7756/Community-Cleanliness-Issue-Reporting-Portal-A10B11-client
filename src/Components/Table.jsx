@@ -32,7 +32,7 @@ const Table = ({ myContribution }) => {
       body: tableRows,
     });
 
-    doc.save("My Contribution.pdf");
+    doc.save("My Contributions.pdf");
   };
 
   return (
