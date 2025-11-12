@@ -1,22 +1,15 @@
-import { useContext } from "react";
 import { Outlet } from "react-router";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { AuthContext } from "../Provider/AuthContext";
-import Loading from "../Components/Loading";
+import ScrollToTop from "../Components/ScrollToTop";
 
 const RootLayout = () => {
-  const { loading } = useContext(AuthContext);
-
-  if (loading) {
-    return <Loading></Loading>;
-  }
-
   return (
     <div>
       <Navbar></Navbar>
 
       <main className="min-h-[calc(100vh-285px)]">
+        <ScrollToTop />
         <Outlet></Outlet>
       </main>
       <Footer></Footer>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaTrash,
   FaHardHat,
@@ -11,6 +11,7 @@ import useAxios from "../Hooks/useAxios";
 import { Link } from "react-router";
 import Container from "./Container";
 import Loading from "./Loading";
+import { Typewriter } from "react-simple-typewriter";
 
 const RecentComplaints = () => {
   const [latestIssues, setlatestIssues] = useState([]);
@@ -36,7 +37,10 @@ const RecentComplaints = () => {
     <Container className="min-h-screen bg-linear-to-br md:p-8 p-8">
       <div className="mb-10">
         <h1 className="text-4xl font-bold mb-6">
-          Recent <span className="text-primary">Complaints</span>
+          Recent{" "}
+          <span className="text-primary">
+            <Typewriter words={["Complaints"]} loop={true}></Typewriter>
+          </span>
         </h1>
         <p className="mt-6 text-lg">
           Community reported issues awaiting resolution

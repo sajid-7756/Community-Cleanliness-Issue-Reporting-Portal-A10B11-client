@@ -14,7 +14,7 @@ const Footer = () => {
       <hr className="h-1 bg-linear-to-r from-primary via-secondary to-accent animate-pulse rounded-full border-0" />
       <footer className="footer sm:footer-horizontal bg-base-100 text-base-content p-10 sm:flex sm:justify-around">
         <nav>
-          <Link to={"/"} className="text-xl font-bold">
+          <Link to={"/"} className="text-2xl font-bold">
             Clean <span className="text-accent">Hub</span>
           </Link>
           <p className="w-80">

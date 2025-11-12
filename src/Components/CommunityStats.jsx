@@ -5,6 +5,9 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthContext";
 import Container from "./Container";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+import { Typewriter } from "react-simple-typewriter";
 
 const CommunityStats = () => {
   const { user } = useContext(AuthContext);
@@ -37,13 +40,16 @@ const CommunityStats = () => {
   const pendingIssue = myIssues.filter((issue) => issue.status === "ongoing");
   const resolvedIssue = myIssues.filter((issue) => issue.status === "ended");
 
-  console.log({ pendingIssue, resolvedIssue });
+  const { ref, inView } = useInView({ triggerOnce: true });
 
   return (
     <div className="p-6 md:p-10 bg-secondary/50">
       <Container className="p-4 space-y-10">
         <h2 className="text-3xl font-bold text-base-content">
-          Community <span className="text-primary">Stats</span>
+          Community{" "}
+          <span className="text-primary">
+            <Typewriter words={["Stats"]} loop={true}></Typewriter>
+          </span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Users */}
@@ -53,8 +59,19 @@ const CommunityStats = () => {
                 <FaUsers className="text-primary text-4xl" />
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-base-content mb-1 tabular-nums">
-                  {stats?.length || 0}
+                <div
+                  ref={ref}
+                  className="text-4xl font-bold text-base-content mb-1 tabular-nums"
+                >
+                  {inView ? (
+                    <CountUp
+                      end={stats?.length || 0}
+                      duration={2}
+                      separator=","
+                    />
+                  ) : (
+                    0
+                  )}
                 </div>
                 <div className="text-sm font-medium text-base-content/60 uppercase tracking-wide">
                   Registered Users
@@ -70,8 +87,19 @@ const CommunityStats = () => {
                 <FaCheckCircle className="text-success text-4xl" />
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-base-content mb-1 tabular-nums">
-                  {user ? resolvedIssue.length : 0}
+                <div
+                  ref={ref}
+                  className="text-4xl font-bold text-base-content mb-1 tabular-nums"
+                >
+                  {inView ? (
+                    <CountUp
+                      end={resolvedIssue?.length || 0}
+                      duration={2}
+                      separator=","
+                    />
+                  ) : (
+                    0
+                  )}
                 </div>
                 <div className="text-sm font-medium text-base-content/60 uppercase tracking-wide">
                   Issues Resolved
@@ -87,8 +115,19 @@ const CommunityStats = () => {
                 <FaHourglassHalf className="text-warning text-4xl" />
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-base-content mb-1 tabular-nums">
-                  {user ? pendingIssue.length : 0}
+                <div
+                  ref={ref}
+                  className="text-4xl font-bold text-base-content mb-1 tabular-nums"
+                >
+                  {inView ? (
+                    <CountUp
+                      end={pendingIssue?.length || 0}
+                      duration={2}
+                      separator=","
+                    />
+                  ) : (
+                    0
+                  )}
                 </div>
                 <div className="text-sm font-medium text-base-content/60 uppercase tracking-wide">
                   Issues Pending

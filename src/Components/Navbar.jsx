@@ -83,7 +83,7 @@ const Navbar = () => {
           </div>
           <Link
             to={"/"}
-            className="btn shadow-none bg-transparent border-none outline-none text-xl font-bold"
+            className="btn shadow-none bg-transparent border-none outline-none text-2xl font-bold"
           >
             Clean <span className="text-accent">Hub</span>
           </Link>
@@ -129,13 +129,13 @@ const Navbar = () => {
           </label>
           {user ? (
             <div className="dropdown dropdown-end avatar indicator relative">
-              <span className="indicator-item badge badge-primary absolute top-1 right-0 animate-pulse hidden sm:block">
+              <span className="indicator-item badge badge-primary absolute top-1 right-0 animate-pulse hidden sm:block opacity-50">
                 {user?.displayName}
               </span>
               <label tabIndex={0} className="cursor-pointer">
                 <img
                   title={user.displayName}
-                  className="w-12 h-12 rounded-full"
+                  className="w-12 h-12 rounded-full ring-3 ring-primary"
                   src={user?.photoURL}
                   alt={user?.displayName}
                 />

@@ -296,7 +296,7 @@ const IssueDetails = () => {
         <h2 className="text-4xl font-bold mb-8">
           Contributors of this <span className="text-primary">Issue</span>
         </h2>
-        {decContribution.length === 0 ? (
+        {decContribution?.length === 0 ? (
           <h3 className=" text-warning text-xl font-semibold">
             No one Contributed for this Issue
           </h3>
@@ -315,7 +315,7 @@ const IssueDetails = () => {
                   <td>{index + 1}</td>
                   <td>
                     <div className="flex items-center">
-                      <div className="avatar">
+                      <div className="avatar flex justify-center items-center gap-2">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
                             src={
@@ -325,17 +325,15 @@ const IssueDetails = () => {
                             alt={contricbution.title}
                           />
                         </div>
+                        <span className="text-accent font-semibold">
+                          {contricbution.name}
+                        </span>
                       </div>
                       <div>
                         <div className="text-sm opacity-50">
                           {contricbution.location}
                         </div>
                       </div>
-                      <td>
-                        <span className="text-accent font-semibold">
-                          {contricbution.name}
-                        </span>
-                      </td>
                     </div>
                   </td>
 

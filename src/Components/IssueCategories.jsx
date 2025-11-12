@@ -1,10 +1,6 @@
-import {
-  FaTrash,
-  FaHardHat,
-  FaTools,
-  FaRoad,
-} from "react-icons/fa";
+import { FaTrash, FaHardHat, FaTools, FaRoad } from "react-icons/fa";
 import Container from "./Container";
+import { Typewriter } from "react-simple-typewriter";
 
 // Sample categories data
 const categories = [
@@ -48,7 +44,10 @@ const CategoriesSection = () => {
       {/* Header with Animation */}
       <div className="mb-10">
         <h1 className="text-4xl font-bold mb-6">
-          Issue <span className="text-primary">Categories</span>
+          Issue{" "}
+          <span className="text-primary">
+            <Typewriter words={["Categories"]} loop={true}></Typewriter>
+          </span>
         </h1>
         <p className="mt-6 text-lg">
           Community reported issues awaiting resolution

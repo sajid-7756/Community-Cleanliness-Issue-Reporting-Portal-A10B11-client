@@ -107,22 +107,20 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-/* Base style for all nav links */
-a.navlink {
-  color: #374151; /* gray-700 */
+a {
   text-decoration: none;
   padding: 0.5rem 1rem;
   transition: color 0.2s ease;
 }
 
 /* Hover effect */
-a.navlink:hover {
-  color: #10b981; /* emerald-500 */
+a:hover {
+  color: #10b981;
 }
 
-/* Active link style */
-a.navlink.active {
-  color: #10b981; /* emerald-500 */
+
+a.active {
+  color: #10b981; 
   font-weight: bold;
   border-bottom: 2px solid #10b981;
 }

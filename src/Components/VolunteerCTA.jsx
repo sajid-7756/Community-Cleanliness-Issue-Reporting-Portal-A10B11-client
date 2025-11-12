@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { FaLeaf, FaHandsHelping } from "react-icons/fa";
 import Container from "./Container";
+import { Typewriter } from "react-simple-typewriter";
 
 const VolunteerCTA = () => {
   return (
@@ -17,7 +18,10 @@ const VolunteerCTA = () => {
             </div>
 
             <h2 className="text-4xl lg:text-5xl font-bold text-base-content leading-tight">
-              Join Our <span className="text-primary">Clean Drive</span>
+              Join Our{" "}
+              <span className="text-primary">
+                <Typewriter words={["Clean Drive"]} loop={true}></Typewriter>
+              </span>
             </h2>
 
             {/* Description */}
