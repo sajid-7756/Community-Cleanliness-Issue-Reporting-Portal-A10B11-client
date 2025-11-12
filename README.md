@@ -5,9 +5,11 @@ Built with **React**, **TailwindCSS/DaisyUI**, and modern libraries, it provides
 
 ---
 
-## 🔗 Live Demo
+## 🔗 Live Link
 
 👉 [View CleanHub Live](https://a10-b11-issuereport-4c3a42.netlify.app/)
+
+---
 
 ## ✨ Features
 
@@ -44,3 +46,9 @@ git clone https://github.com/sajid-7756/Community-Cleanliness-Issue-Reporting-Po
 cd cleanhub
 npm install
 ```
+
+---
+
+- 👨‍💻 Developer – -Sajid !
+
+---
