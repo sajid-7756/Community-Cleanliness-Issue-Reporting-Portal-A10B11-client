@@ -37,188 +37,137 @@ const Navbar = () => {
       <li>
         <NavLink to={"/issues"}>All Issues</NavLink>
       </li>
+      <li>
+        <NavLink to={"/about"}>About</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/contact"}>Contact</NavLink>
+      </li>
       {user && (
-        <>
-          <li>
-            <NavLink to={"/add-issues"}>Add Issues</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/my-issues"}>My Issues</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/my-contribution"}>My Contribution</NavLink>
-          </li>
-        </>
+        <li>
+          <NavLink to={"/dashboard"}>Dashboard</NavLink>
+        </li>
       )}
     </>
   );
   return (
-    <div className="navbar bg-white/50 dark:bg-base-100/50 shadow-sm sticky top-0 z-50 backdrop-blur-md p-4">
+    <div className="navbar bg-base-100/80 sticky top-0 z-50 backdrop-blur-md border-b border-base-200 px-4 py-2">
       <Container className="flex">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
+                />
               </svg>
             </div>
             <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content dark:bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow bg-white"
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow-xl border border-base-200"
             >
               {links}
             </ul>
           </div>
           <Link
             to={"/"}
-            className="btn shadow-none bg-transparent border-none outline-none text-2xl font-bold"
+            className="flex items-center gap-2 text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity"
           >
-            Clean <span className="text-accent">Hub</span>
+            <span className="bg-primary text-primary-content px-2 py-1 rounded-lg">Clean</span>
+            <span className="text-secondary">Hub</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="menu menu-horizontal px-1 gap-2 font-medium">{links}</ul>
         </div>
-        <div className="navbar-end space-x-2">
-          <label className="toggle text-base-content sm:hidden">
+        <div className="navbar-end gap-4">
+          <label className="swap swap-rotate btn btn-ghost btn-circle">
             <input
               onChange={(e) => handleTheme(e.target.checked)}
               type="checkbox"
               checked={theme === "dark"}
-              className="theme-controller"
             />
-
             <svg
-              aria-label="sun"
+              className="swap-on fill-current w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor"
-              >
-                <circle cx="12" cy="12" r="4"></circle>
-                <path d="M12 2v2"></path>
-                <path d="M12 20v2"></path>
-                <path d="m4.93 4.93 1.41 1.41"></path>
-                <path d="m17.66 17.66 1.41 1.41"></path>
-                <path d="M2 12h2"></path>
-                <path d="M20 12h2"></path>
-                <path d="m6.34 17.66-1.41 1.41"></path>
-                <path d="m19.07 4.93-1.41 1.41"></path>
-              </g>
+              <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
             </svg>
-
             <svg
-              aria-label="moon"
+              className="swap-off fill-current w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-              </g>
+              <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.69Z" />
             </svg>
           </label>
 
-          <label className="hidden sm:flex cursor-pointer gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="5" />
-              <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-            </svg>
-            <input
-              onChange={(e) => handleTheme(e.target.checked)}
-              type="checkbox"
-              checked={theme === "dark"}
-              className="toggle theme-controller"
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </label>
           {user ? (
-            <div className="dropdown dropdown-end avatar indicator relative">
-              <span className="indicator-item badge badge-primary absolute top-1 right-0 animate-pulse hidden sm:block opacity-50">
-                {user?.displayName}
-              </span>
-              <label tabIndex={0} className="cursor-pointer">
-                <img
-                  title={user.displayName}
-                  className="w-10 h-10 rounded-full ring-3 ring-primary"
-                  src={
-                    user?.photoURL.startsWith("http")
-                      ? user?.photoURL
-                      : "https://i.ibb.co.com/CpHdF8h2/icons8-user.gif"
-                  }
-                />
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar border-2 border-primary ring-2 ring-primary ring-offset-2">
+                <div className="w-10 rounded-full">
+                  <img
+                    alt={user.displayName}
+                    src={
+                      user?.photoURL?.startsWith("http")
+                        ? user?.photoURL
+                        : "https://i.ibb.co/CpHdF8h2/icons8-user.gif"
+                    }
+                  />
+                </div>
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow dark:bg-base-100 rounded-box w-30 bg-white absolute top-14 "
+                className="mt-3 z-[1] p-2 shadow-2xl menu menu-sm dropdown-content bg-base-100 rounded-box w-52 border border-base-200"
               >
+                <li className="menu-title px-4 py-2 border-b border-base-200 mb-2">
+                  <p className="font-bold text-base-content">{user?.displayName}</p>
+                  <p className="text-xs text-base-content/60 truncate">{user?.email}</p>
+                </li>
                 <li>
-                  <button className="btn btn-outline" onClick={handleSignOut}>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <button
+                    className="text-error hover:bg-error hover:text-error-content transition-colors mt-2"
+                    onClick={handleSignOut}
+                  >
                     Logout
                   </button>
                 </li>
               </ul>
             </div>
           ) : (
-            <>
+            <div className="flex gap-2">
               <Link
-                to={"/login"}
-                className="btn btn-outline hover:btn-primary transition-all duration-300"
+                to="/login"
+                className="btn btn-ghost btn-sm sm:btn-md font-bold"
               >
                 Sign In
               </Link>
-              <Link to={"/register"} className=" hidden sm:block">
-                <button className="btn btn-outline hover:btn-primary transition-all duration-300">
-                  Sign Up
-                </button>
+              <Link
+                to="/register"
+                className="btn btn-primary btn-sm sm:btn-md px-6 shadow-lg shadow-primary/20"
+              >
+                Join Now
               </Link>
-            </>
+            </div>
           )}
         </div>
+
       </Container>
     </div>
   );

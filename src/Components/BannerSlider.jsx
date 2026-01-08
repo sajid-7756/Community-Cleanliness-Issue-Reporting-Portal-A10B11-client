@@ -29,82 +29,105 @@ const handleScrollDown = () => {
 
 const BannerSlider = () => {
   const settings = {
+    dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5000,
+    fade: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     appendDots: (dots) => (
-      <div className="bottom-6">
-        <ul className="flex gap-2 justify-center">{dots}</ul>
+      <div className="bottom-10">
+        <ul className="flex gap-3 justify-center">{dots}</ul>
       </div>
     ),
-    customPaging: () => (
-      <div className="w-3 h-3 bg-base-200 hover:bg-base-300 rounded-full transition-all" />
+    customPaging: (i) => (
+      <div className="w-12 h-1 bg-white/20 hover:bg-white/40 rounded-full transition-all duration-300" />
     ),
   };
 
   const slides = [
     {
-      image:
-        "https://images.unsplash.com/photo-1749805339958-4b1d0f16423d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FyYmFnZSUyMGlzc3VlfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=500",
-      title: "Report Community Issues",
-      subtitle:
-        "Help keep our community clean by reporting garbage and waste management issues",
+      image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1920",
+      title: "Keep Your Community <span class='text-primary'>Clean</span>",
+      subtitle: "Join thousands of citizens reporting and resolving issues in real-time.",
+      cta: "Report Now"
     },
     {
-      image:
-        "https://plus.unsplash.com/premium_photo-1663090523245-0482efad87af?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29tbXVuaXR5JTIwY2xlYW5pbmclMkN8ZW58MHwwfDB8fHww&auto=format&fit=crop&q=60&w=500",
-      title: "Join Our Clean Drive",
-      subtitle:
-        "Be a part of community-driven cleanliness initiatives and make a difference",
+      image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1920",
+      title: "Empowering <span class='text-primary'>Action</span>",
+      subtitle: "Connecting citizens with authorities for a sustainable future.",
+      cta: "Explore Issues"
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1605050714296-ef81755470ca?q=80&w=1080",
-      title: "Sustainable Community",
-      subtitle:
-        "Together we can build a cleaner, greener, and more sustainable community",
+      image: "https://images.unsplash.com/photo-1536939459926-301728717817?q=80&w=1920",
+      title: "Build a <span class='text-primary'>Greener</span> World",
+      subtitle: "Track your impact and see the difference you make every day.",
+      cta: "Join Community"
     },
   ];
 
   return (
-    <div className="banner-slider relative">
+    <div className="banner-slider relative group">
       <Slider {...settings}>
         {slides.map((slide, index) => (
-          <div key={index} className="relative">
-            <div className="relative h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+          <div key={index} className="outline-none">
+            <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
               <img
                 src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover"
+                alt="Banner"
+                className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-[10000ms]"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 lg:p-16 text-white">
-                <div className="container mx-auto">
-                  <h2 className="text-white mb-3 max-w-2xl text-5xl font-bold">
-                    {slide.title}
-                  </h2>
-                  <p className="text-lg md:text-xl text-white/90 max-w-xl mb-6">
-                    {slide.subtitle}
-                  </p>
-                  <button
-                    onClick={handleScrollDown}
-                    className="btn btn-primary px-8"
-                  >
-                    Get Started
-                  </button>
+              {/* Premium Gradient Overlay */}
+              <div className="absolute inset-0 bg-linear-to-r from-secondary/90 via-secondary/40 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-secondary/60 to-transparent" />
+              
+              <div className="absolute inset-0 flex items-center">
+                <div className="container mx-auto px-6 md:px-12">
+                  <div className="max-w-3xl space-y-6 animate-fade-in">
+                    <h2 
+                        className="text-white text-5xl md:text-7xl font-extrabold leading-tight drop-shadow-2xl"
+                        dangerouslySetInnerHTML={{ __html: slide.title }}
+                    />
+                    <p className="text-xl md:text-2xl text-white/80 max-w-xl font-medium drop-shadow-lg">
+                      {slide.subtitle}
+                    </p>
+                    <div className="flex gap-4 pt-4">
+                        <button
+                            onClick={handleScrollDown}
+                            className="btn btn-primary btn-lg rounded-2xl px-10 shadow-2xl shadow-primary/30 group/btn"
+                        >
+                            {slide.cta}
+                            <FaChevronRight className="group-hover:translate-x-1 transition-transform" />
+                        </button>
+                        <button className="btn btn-outline btn-lg rounded-2xl px-10 text-white border-white/30 hover:bg-white/10 hover:border-white">
+                            Learn More
+                        </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         ))}
       </Slider>
+
+      {/* Scroll Hint */}
+      <div 
+        onClick={handleScrollDown}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer z-20 flex flex-col items-center gap-2 text-white/50 hover:text-white transition-colors animate-bounce"
+      >
+        <span className="text-xs font-bold uppercase tracking-widest">Scroll</span>
+        <div className="w-1 h-8 bg-white/20 rounded-full relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1/2 bg-primary animate-pulse" />
+        </div>
+      </div>
     </div>
   );
 };
+
 
 export default BannerSlider;

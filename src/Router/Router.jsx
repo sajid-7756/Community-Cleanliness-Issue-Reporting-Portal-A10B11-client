@@ -10,6 +10,11 @@ import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import IssueDetails from "../Pages/IssueDetails";
 import Error from "../Pages/Error";
+import About from "../Pages/About";
+import Contact from "../Pages/Contact";
+import Profile from "../Pages/Profile";
+import DashboardLayout from "../Layout/DashboardLayout";
+import DashboardHome from "../Pages/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +24,48 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/about",
+        Component: About,
+      },
+      {
+        path: "/contact",
+        Component: Contact,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <DashboardLayout />
+          </PrivateRoute>
+        ),
+        children: [
+            {
+                index: true,
+                element: <DashboardHome />,
+            },
+            {
+                path: "add-issue",
+                element: <AddIssues />,
+            },
+            {
+                path: "my-issues",
+                element: <MyIssues />,
+            },
+            {
+                path: "my-contribution",
+                element: <MyContribution />,
+            },
+        ]
       },
       {
         path: "/issues",
@@ -31,30 +78,6 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <IssueDetails></IssueDetails>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/add-issues",
-        element: (
-          <PrivateRoute>
-            <AddIssues></AddIssues>,
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-issues",
-        element: (
-          <PrivateRoute>
-            <MyIssues></MyIssues>,
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-contribution",
-        element: (
-          <PrivateRoute>
-            <MyContribution></MyContribution>,
           </PrivateRoute>
         ),
       },

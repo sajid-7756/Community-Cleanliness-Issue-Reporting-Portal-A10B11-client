@@ -4,10 +4,7 @@ import {
   FaHardHat,
   FaTools,
   FaRoad,
-  FaMapMarkerAlt,
-  FaArrowRight,
 } from "react-icons/fa";
-import { Link } from "react-router";
 import IssueCard from "./IssueCard";
 
 const AllIssues = ({ issues }) => {

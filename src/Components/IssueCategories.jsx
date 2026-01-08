@@ -1,126 +1,87 @@
-import { FaTrash, FaHardHat, FaTools, FaRoad } from "react-icons/fa";
+import { Trash2, HardHat, Wrench,  ArrowRight, Kanban } from "lucide-react";
+import { Link } from "react-router";
 import Container from "./Container";
-import { Typewriter } from "react-simple-typewriter";
 
-// Sample categories data
 const categories = [
   {
     id: 1,
-    title: "Garbage Issues",
-    description: "Report waste management problems",
-    icon: <FaTrash className="text-2xl" />,
-    gradient: "from-green-400 to-emerald-600",
-    color: "green",
+    title: "Garbage & Waste",
+    description: "Help eliminate eyesores and health hazards from our streets.",
+    icon: Trash2,
+    color: "text-emerald-500",
+    bgColor: "bg-emerald-500/10",
+    slug: "Garbage"
   },
   {
     id: 2,
     title: "Illegal Construction",
-    description: "Report unauthorized building activities",
-    icon: <FaHardHat className="text-2xl" />,
-    gradient: "from-orange-400 to-red-600",
-    color: "orange",
+    description: "Protect our urban planning and safety standards.",
+    icon: HardHat,
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    slug: "Illegal Construction"
   },
   {
     id: 3,
-    title: "Broken Property",
-    description: "Report damaged public facilities",
-    icon: <FaTools className="text-2xl" />,
-    gradient: "from-amber-400 to-yellow-600",
-    color: "amber",
+    title: "Public Facilities",
+    description: "Repair broken lights, benches, and community assets.",
+    icon: Wrench,
+    color: "text-amber-500",
+    bgColor: "bg-amber-500/10",
+    slug: "Broken Public Property"
   },
   {
     id: 4,
-    title: "Road Damage",
-    description: "Report potholes and road issues",
-    icon: <FaRoad className="text-2xl" />,
-    gradient: "from-red-400 to-rose-600",
-    color: "red",
+    title: "Road Infrastructure",
+    description: "Fix potholes and ensure safe transit for everyone.",
+    icon: Kanban,
+    color: "text-rose-500",
+    bgColor: "bg-rose-500/10",
+    slug: "Road Damage"
   },
 ];
 
 const CategoriesSection = () => {
   return (
-    <Container className="p-8">
-      {/* Header with Animation */}
-      <div className="mb-10">
-        <h1 className="text-4xl font-bold mb-6">
-          Issue{" "}
-          <span className="text-primary">
-            <Typewriter words={["Categories"]} loop={true}></Typewriter>
-          </span>
-        </h1>
-        <p className="mt-6 text-lg">
-          Community reported issues awaiting resolution
-        </p>
-      </div>
+    <div className="py-24 md:py-32 bg-base-100">
+      <Container>
+        <div className="flex flex-col items-center text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-black text-secondary tracking-tight mb-6">
+            Issue <span className="text-primary italic">Categories</span>
+          </h2>
+          <p className="text-lg text-secondary/60 font-medium max-w-2xl leading-relaxed">
+            Quickly identify and report problems by category. Each sector represents a specialized effort in our cleanup mission.
+          </p>
+        </div>
 
-      {/* Categories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto">
-        {categories.map((cat, index) => (
-          <div
-            key={cat.id}
-            className="group relative bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer transform hover:-translate-y-2"
-            style={{ animationDelay: `${index * 50}ms` }}
-          >
-            {/* Gradient Border Effect */}
-            <div
-              className={`absolute inset-0 bg-linear-to-br ${cat.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm`}
-            ></div>
-
-            {/* Card Content */}
-            <div className="relative bg-white rounded-2xl p-6 m-0.5 h-full flex flex-col">
-              {/* Background Pattern */}
-              <div
-                className={`absolute top-0 right-0 w-32 h-32 bg-linear-to-br ${cat.gradient} opacity-5 rounded-full transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-700`}
-              ></div>
-
-              {/* Icon Container */}
-              <div className="relative z-10 mb-4">
-                <div
-                  className={`w-16 h-16 rounded-xl bg-linear-to-br ${cat.gradient} flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {categories.map((cat) => (
+                <Link
+                    to={`/issues?category=${cat.slug}`}
+                    key={cat.id}
+                    className="group bg-base-200/50 rounded-[2.5rem] border border-transparent hover:border-primary/20 hover:bg-base-100 p-10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/5 flex flex-col"
                 >
-                  {cat.icon}
-                </div>
-
-                {/* Ripple Effect */}
-                <div
-                  className={`absolute top-0 left-0 w-16 h-16 rounded-xl bg-linear-to-br ${cat.gradient} opacity-0 group-hover:opacity-30 group-hover:scale-150 transition-all duration-700`}
-                ></div>
-              </div>
-
-              {/* Title */}
-              <h3 className="mb-2 text-xl font-bold text-gray-800 group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300">
-                {cat.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-600 text-sm mb-4 grow group-hover:text-gray-700 transition-colors duration-300">
-                {cat.description}
-              </p>
-
-              {/* Divider with Animation */}
-              <div
-                className={`h-px bg-linear-to-r ${cat.gradient} mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
-              ></div>
-              {/* Shine Effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700">
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/30 to-transparent skew-x-12"></div>
-              </div>
-
-              {/* Corner Accent */}
-              <div
-                className={`absolute bottom-0 right-0 w-20 h-20 bg-linear-to-tl ${cat.gradient} opacity-0 group-hover:opacity-10 rounded-tl-full transition-all duration-500`}
-              ></div>
-            </div>
-
-            {/* Pulse Effect on Hover */}
-            <div
-              className={`absolute inset-0 rounded-2xl bg-linear-to-br ${cat.gradient} opacity-0 group-hover:opacity-20 animate-pulse-slow pointer-events-none`}
-            ></div>
-          </div>
-        ))}
-      </div>
-    </Container>
+                    <div className={`w-20 h-20 rounded-3xl ${cat.bgColor} ${cat.color} flex items-center justify-center mb-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+                        <cat.icon size={36} />
+                    </div>
+                    
+                    <h3 className="text-xl font-extrabold text-secondary mb-4 group-hover:text-primary transition-colors">
+                        {cat.title}
+                    </h3>
+                    
+                    <p className="text-secondary/50 font-bold text-sm leading-relaxed mb-8 flex-1">
+                        {cat.description}
+                    </p>
+                    
+                    <div className="pt-8 border-t border-base-content/5 mt-auto flex items-center justify-between text-primary font-black text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
+                        Explore Category
+                        <ArrowRight size={18} />
+                    </div>
+                </Link>
+            ))}
+        </div>
+      </Container>
+    </div>
   );
 };
 
